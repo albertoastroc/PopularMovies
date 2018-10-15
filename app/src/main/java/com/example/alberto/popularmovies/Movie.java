@@ -1,27 +1,72 @@
 package com.example.alberto.popularmovies;
 
-public class Movie {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    String mMovieName;
-    String mMovieYear;
+public class Movie implements Parcelable{
 
-    public Movie(String mMovieName) {
-        this.mMovieName = mMovieName;
+    String mMoviePoster;
+    String mMovieTitle;
+    String mMovieOverview;
+    String mReleaseDate;
+    int mUserRating;
+
+    public Movie(String mMoviePoster) {
+        this.mMoviePoster = mMoviePoster;
     }
 
-    public String getmMovieName() {
-        return mMovieName;
+
+    protected Movie(Parcel in) {
+        mMoviePoster = in.readString();
+        mMovieTitle = in.readString();
+        mMovieOverview = in.readString();
+        mReleaseDate = in.readString();
+        mUserRating = in.readInt();
     }
 
-    public void setmMovieName(String mMovieName) {
-        this.mMovieName = mMovieName;
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
+
+    public String getmMoviePoster() {
+        return mMoviePoster;
     }
 
-    public String getmMovieYear() {
-        return mMovieYear;
+    public String getmMovieTitle() {
+        return mMovieTitle;
     }
 
-    public void setmMovieYear(String mMovieYear) {
-        this.mMovieYear = mMovieYear;
+    public String getmMovieOverview() {
+        return mMovieOverview;
+    }
+
+    public String getmReleaseDate() {
+        return mReleaseDate;
+    }
+
+    public int getmUserRating() {
+        return mUserRating;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mMoviePoster);
+        dest.writeString(mMovieTitle);
+        dest.writeString(mMovieOverview);
+        dest.writeString(mReleaseDate);
+        dest.writeInt(mUserRating);
     }
 }
