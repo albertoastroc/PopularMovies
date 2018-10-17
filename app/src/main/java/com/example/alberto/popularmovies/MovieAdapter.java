@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -36,7 +37,9 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         Movie movie = getItem(position);
         String url = movie.getmMoviePoster();
 
-        Picasso.get().load(url).into(view);
+        GridView gridView = (GridView) parent;
+        int columnWidth = gridView.getColumnWidth();
+        Picasso.get().load(url).resize(columnWidth, (int) (columnWidth * 1.5)).into(view);
 
         return view;
 

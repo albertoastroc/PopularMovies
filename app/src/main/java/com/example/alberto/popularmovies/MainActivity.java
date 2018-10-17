@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final String API_KEY = "aa7c95df42b9e34788ea40bcfb3d83c9";
     private final String templateRequest = "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg";
+
+    MovieAdapter movieAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(final ArrayList<Movie> movies) {
 
             GridView gridView = findViewById(R.id.grid_view);
-            MovieAdapter movieAdapter = new MovieAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, movies);
+            movieAdapter = new MovieAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, movies);
             gridView.setAdapter(movieAdapter);
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -96,5 +101,30 @@ public class MainActivity extends AppCompatActivity {
             });
 
         }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id){
+
+            case R.id.popular:
+                new DownloadListTask().execute("popular");
+                return true;
+
+            case R.id.top_rated:
+                new DownloadListTask().execute("top_rated");
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
