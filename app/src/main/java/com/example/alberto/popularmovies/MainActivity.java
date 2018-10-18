@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private final String API_KEY = "aa7c95df42b9e34788ea40bcfb3d83c9";
     private final String templateRequest = "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg";
 
-    MovieAdapter movieAdapter;
+    RecyclerViewMovieAdapter recyclerViewMovieAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,24 +80,26 @@ public class MainActivity extends AppCompatActivity {
             }
 
             return movies;
+
         }
 
         @Override
-        protected void onPostExecute(final ArrayList<Movie> movies) {
+        protected void onPostExecute(ArrayList<Movie> movies) {
 
-            GridView gridView = findViewById(R.id.grid_view);
-            movieAdapter = new MovieAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, movies);
-            gridView.setAdapter(movieAdapter);
-            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            RecyclerView recyclerView = findViewById(R.id.main_rv);
+            recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+            recyclerViewMovieAdapter = new RecyclerViewMovieAdapter(getApplicationContext(), movies, new RecyclerViewMovieAdapter.ItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                public void onItemClick(Movie item) {
                     Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                    intent.putExtra("movie", movies.get(position));
+                    intent.putExtra("movie", item);
                     startActivity(intent);
-
                 }
-            });
+            }
+
+            );
+            recyclerView.setAdapter(recyclerViewMovieAdapter);
+            recyclerView.setClickable(true);
 
         }
 

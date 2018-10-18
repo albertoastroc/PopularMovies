@@ -5,18 +5,18 @@ import android.os.Parcelable;
 
 public class Movie implements Parcelable{
 
-    String mMoviePoster;
-    String mMovieTitle;
-    String mMovieOverview;
-    String mReleaseDate;
-    int mUserRating;
+    private String mMoviePoster;
+    private String mMovieTitle;
+    private String mMovieOverview;
+    private String mReleaseDate;
+    private int mUserRating;
 
-    public Movie(String mMoviePoster) {
+    Movie(String mMoviePoster) {
         this.mMoviePoster = mMoviePoster;
     }
 
 
-    protected Movie(Parcel in) {
+    private Movie(Parcel in) {
         mMoviePoster = in.readString();
         mMovieTitle = in.readString();
         mMovieOverview = in.readString();

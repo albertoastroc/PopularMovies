@@ -14,7 +14,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ImageView posterIv = findViewById(R.id.poster_iv);
+        ImageView posterIv = findViewById(R.id.detail_poster_iv);
 
         Intent intent = getIntent();
         Movie movie = intent.getParcelableExtra("movie");
