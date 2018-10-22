@@ -11,10 +11,13 @@ public class Movie implements Parcelable{
     private String mReleaseDate;
     private int mUserRating;
 
-    Movie(String mMoviePoster) {
-        this.mMoviePoster = mMoviePoster;
+    Movie(String originalTitle, String moviePoster, String overview, int userRating, String releaseDate) {
+        this.mMoviePoster = moviePoster;
+        this.mMovieTitle = originalTitle;
+        this.mMovieOverview = overview;
+        this.mUserRating = userRating;
+        this.mReleaseDate = releaseDate;
     }
-
 
     private Movie(Parcel in) {
         mMoviePoster = in.readString();

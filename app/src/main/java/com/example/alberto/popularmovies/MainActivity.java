@@ -32,22 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-        Movie movie1 = new Movie(templateRequest);
-        Movie movie2 = new Movie(templateRequest);
-        Movie movie3 = new Movie(templateRequest);
-        Movie movie4 = new Movie(templateRequest);
-        Movie movie5 = new Movie(templateRequest);
-
-
-        ArrayList<Movie> movieArrayList1 = new ArrayList<Movie>();
-        movieArrayList1.add(movie1);
-        movieArrayList1.add(movie2);
-        movieArrayList1.add(movie3);
-        movieArrayList1.add(movie4);
-        movieArrayList1.add(movie5);
-
         new DownloadListTask().execute("popular");
 
     }
@@ -87,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(ArrayList<Movie> movies) {
 
             RecyclerView recyclerView = findViewById(R.id.main_rv);
-            recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+            recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
             recyclerViewMovieAdapter = new RecyclerViewMovieAdapter(getApplicationContext(), movies, new RecyclerViewMovieAdapter.ItemClickListener() {
                 @Override
                 public void onItemClick(Movie item) {

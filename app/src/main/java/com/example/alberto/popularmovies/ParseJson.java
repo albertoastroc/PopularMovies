@@ -26,9 +26,13 @@ public class ParseJson {
 
                 for (int i = 0; i < resultsArray.length(); i++){
                     JSONObject jsonObject = resultsArray.getJSONObject(i);
+                    String originalTitle = jsonObject.getString("original_title");
                     String posterPath = jsonObject.getString("poster_path");
+                    String overview = jsonObject.getString("overview");
+                    int userRating = jsonObject.getInt("vote_average");
+                    String releaseDate = jsonObject.getString("release_date");
                     String moviePoster = templateRequest + posterPath;
-                    Movie movie = new Movie(moviePoster);
+                    Movie movie = new Movie(originalTitle, moviePoster, overview, userRating, releaseDate);
                     resultsList.add(movie);
                 }
 
