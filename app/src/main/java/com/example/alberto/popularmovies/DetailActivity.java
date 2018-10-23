@@ -1,12 +1,14 @@
 package com.example.alberto.popularmovies;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+
+import java.text.DecimalFormat;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -25,19 +27,16 @@ public class DetailActivity extends AppCompatActivity {
         Movie movie = intent.getParcelableExtra("movie");
 
         String poster = movie.getmMoviePoster();
-        Picasso.get().load(poster).resize(420, (int) (420 * 1.5)).into(posterIv);
+        Picasso.get().load(poster).fit().into(posterIv);
         String originalTitle = movie.getmMovieTitle();
         String overview = movie.getmMovieOverview();
-        int userRating = movie.getmUserRating();
+        double userRating = (double)movie.getmUserRating();
         String releaseDate = movie.getmReleaseDate();
 
         originalTitleTv.setText(originalTitle);
         overviewTv.setText(overview);
         userRatingTv.setText(String.valueOf(userRating));
         releaseDateTv.setText(releaseDate);
-
-
-
 
 
     }

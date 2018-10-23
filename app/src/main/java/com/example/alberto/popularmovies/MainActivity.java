@@ -1,20 +1,20 @@
 package com.example.alberto.popularmovies;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -24,21 +24,65 @@ public class MainActivity extends AppCompatActivity {
 
     private final String API_KEY = "aa7c95df42b9e34788ea40bcfb3d83c9";
     private final String templateRequest = "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg";
-
-    RecyclerViewMovieAdapter recyclerViewMovieAdapter;
+    ArrayList<Movie> movies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new DownloadListTask().execute("popular");
+        if (isConnected()){
+            new DownloadListTask().execute("popular");
+        }
+
 
     }
 
-    private class DownloadListTask extends AsyncTask<String,Void,ArrayList<Movie>> {
+    private boolean isConnected(){
 
-        ArrayList<Movie> movies = new ArrayList<>();
+        boolean isConnected;
+        ConnectivityManager cm =
+                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = null;
+        if (cm != null) {
+            activeNetwork = cm.getActiveNetworkInfo();
+        }
+        isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        return isConnected;
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (isConnected()){
+            int id = item.getItemId();
+            switch (id) {
+
+                case R.id.popular:
+                    new DownloadListTask().execute("popular");
+                    return true;
+
+                case R.id.top_rated:
+                    new DownloadListTask().execute("top_rated");
+                    return true;
+            }
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private class DownloadListTask extends AsyncTask<String, Void, ArrayList<Movie>> {
 
         @Override
         protected ArrayList<Movie> doInBackground(String... preference) {
@@ -71,8 +115,9 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(ArrayList<Movie> movies) {
 
             RecyclerView recyclerView = findViewById(R.id.main_rv);
-            recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
-            recyclerViewMovieAdapter = new RecyclerViewMovieAdapter(getApplicationContext(), movies, new RecyclerViewMovieAdapter.ItemClickListener() {
+            recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+            recyclerView.setHasFixedSize(true);
+            RecyclerViewMovieAdapter recyclerViewMovieAdapter = new RecyclerViewMovieAdapter(getApplicationContext(), movies, new RecyclerViewMovieAdapter.ItemClickListener() {
                 @Override
                 public void onItemClick(Movie item) {
                     Intent intent = new Intent(MainActivity.this, DetailActivity.class);
@@ -87,29 +132,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        switch (id){
-
-            case R.id.popular:
-                new DownloadListTask().execute("popular");
-                return true;
-
-            case R.id.top_rated:
-                new DownloadListTask().execute("top_rated");
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

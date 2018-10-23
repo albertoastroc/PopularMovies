@@ -2,7 +2,6 @@ package com.example.alberto.popularmovies;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +60,7 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
         public void bind(final Movie movie, final ItemClickListener itemClickListener) {
 
             String posterUrl = movie.getmMoviePoster();
-            Picasso.get().load(posterUrl).resize(540, (int) (540 * 1.5)).into(recyclerPosterIv);
+            Picasso.get().load(posterUrl).fit().into(recyclerPosterIv);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

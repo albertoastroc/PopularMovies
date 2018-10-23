@@ -4,13 +4,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class ParseJson {
 
 
-
-    public static ArrayList<Movie> parseJson(String json){
+    public static ArrayList<Movie> parseJson(String json) {
 
         JSONObject rootObject;
         ArrayList<Movie> resultsList = new ArrayList<>();
@@ -22,9 +22,9 @@ public class ParseJson {
             rootObject = new JSONObject(json);
             JSONArray resultsArray = rootObject.getJSONArray("results");
 
-            if (!(resultsArray.isNull(0))){
+            if (!(resultsArray.isNull(0))) {
 
-                for (int i = 0; i < resultsArray.length(); i++){
+                for (int i = 0; i < resultsArray.length(); i++) {
                     JSONObject jsonObject = resultsArray.getJSONObject(i);
                     String originalTitle = jsonObject.getString("original_title");
                     String posterPath = jsonObject.getString("poster_path");
@@ -39,7 +39,7 @@ public class ParseJson {
             }
 
 
-            } catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -47,6 +47,6 @@ public class ParseJson {
 
     }
 
-    }
+}
 
 
