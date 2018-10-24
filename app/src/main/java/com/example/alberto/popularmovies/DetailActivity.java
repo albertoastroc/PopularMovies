@@ -12,6 +12,8 @@ import java.text.DecimalFormat;
 
 public class DetailActivity extends AppCompatActivity {
 
+    //TODO remove user rating label
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,16 +29,19 @@ public class DetailActivity extends AppCompatActivity {
         Movie movie = intent.getParcelableExtra("movie");
 
         String poster = movie.getmMoviePoster();
-        Picasso.get().load(poster).fit().into(posterIv);
+        Picasso.get().load(poster).resize(275, 350).into(posterIv);
         String originalTitle = movie.getmMovieTitle();
         String overview = movie.getmMovieOverview();
-        double userRating = (double)movie.getmUserRating();
+        double userRating = movie.getmUserRating();
+        //TODO out of 10
         String releaseDate = movie.getmReleaseDate();
+        String substring = releaseDate.substring(0,4);
+        //TODO list only year
 
         originalTitleTv.setText(originalTitle);
         overviewTv.setText(overview);
-        userRatingTv.setText(String.valueOf(userRating));
-        releaseDateTv.setText(releaseDate);
+        userRatingTv.setText(String.valueOf(userRating) + "/10");
+        releaseDateTv.setText(substring);
 
 
     }

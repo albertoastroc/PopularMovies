@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //TODO make menu appear below appbar
 
         if (isConnected()){
             int id = item.getItemId();

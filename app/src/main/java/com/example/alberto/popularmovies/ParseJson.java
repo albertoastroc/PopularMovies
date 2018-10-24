@@ -16,6 +16,7 @@ public class ParseJson {
         ArrayList<Movie> resultsList = new ArrayList<>();
 
         final String templateRequest = "https://image.tmdb.org/t/p/w185";
+        //TODO: use URL
 
         try {
 
@@ -29,7 +30,7 @@ public class ParseJson {
                     String originalTitle = jsonObject.getString("original_title");
                     String posterPath = jsonObject.getString("poster_path");
                     String overview = jsonObject.getString("overview");
-                    int userRating = jsonObject.getInt("vote_average");
+                    double userRating = jsonObject.getDouble("vote_average");
                     String releaseDate = jsonObject.getString("release_date");
                     String moviePoster = templateRequest + posterPath;
                     Movie movie = new Movie(originalTitle, moviePoster, overview, userRating, releaseDate);

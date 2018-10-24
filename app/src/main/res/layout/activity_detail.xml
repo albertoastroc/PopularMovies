@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:layout_margin="8dp"
     android:orientation="vertical"
     tools:context=".DetailActivity">
 
@@ -12,16 +12,17 @@
         android:id="@+id/original_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poller_one"
-        android:paddingBottom="16dp"
-        android:textSize="30sp" />
+        android:background="#720d5d"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:textSize="36sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp">
+        android:orientation="horizontal">
 
 
         <ImageView
@@ -29,8 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:minHeight="250dp"
-            android:minWidth="250dp"
+            android:paddingTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,19 +43,12 @@
 
 
             <TextView
-                android:id="@+id/release_date_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Release Date:"
-                android:textSize="24sp" />
-
-            <TextView
                 android:id="@+id/release_date_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:textSize="18sp" />
+                android:paddingBottom="16dp"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/average_rating_label"
@@ -79,13 +72,17 @@
         android:id="@+id/overview_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:text="Overview:"
-        android:textSize="24dp"
-        android:textColor="#4e0d3a" />
+        android:textColor="#4e0d3a"
+        android:textSize="24dp" />
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
 
         <TextView
             android:id="@+id/overview_tv"
@@ -95,7 +92,6 @@
             android:textSize="18sp" />
 
     </ScrollView>
-
 
 
 </LinearLayout>

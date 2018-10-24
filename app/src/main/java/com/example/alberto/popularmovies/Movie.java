@@ -20,14 +20,14 @@ public class Movie implements Parcelable{
     private String mMovieTitle;
     private String mMovieOverview;
     private String mReleaseDate;
-    private int mUserRating;
+    private double mUserRating;
 
-    Movie(String originalTitle, String moviePoster, String overview, int userRating, String releaseDate) {
+    Movie(String originalTitle, String moviePoster, String overview, double userRating, String releaseDate) {
         this.mMoviePoster = moviePoster;
         this.mMovieTitle = originalTitle;
         this.mMovieOverview = overview;
-        this.mUserRating = userRating;
         this.mReleaseDate = releaseDate;
+        this.mUserRating = userRating;
     }
 
     private Movie(Parcel in) {
@@ -35,7 +35,7 @@ public class Movie implements Parcelable{
         mMovieTitle = in.readString();
         mMovieOverview = in.readString();
         mReleaseDate = in.readString();
-        mUserRating = in.readInt();
+        mUserRating = in.readDouble();
     }
 
     public String getmMoviePoster() {
@@ -54,7 +54,7 @@ public class Movie implements Parcelable{
         return mReleaseDate;
     }
 
-    public int getmUserRating() {
+    public double getmUserRating() {
         return mUserRating;
     }
 
@@ -69,6 +69,6 @@ public class Movie implements Parcelable{
         dest.writeString(mMovieTitle);
         dest.writeString(mMovieOverview);
         dest.writeString(mReleaseDate);
-        dest.writeInt(mUserRating);
+        dest.writeDouble(mUserRating);
     }
 }
