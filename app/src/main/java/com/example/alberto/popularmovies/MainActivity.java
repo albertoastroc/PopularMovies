@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (isConnected()){
             new DownloadListTask().execute("popular");
-        }
+        } else setContentView(R.layout.error);
 
 
     }
@@ -70,14 +70,16 @@ public class MainActivity extends AppCompatActivity {
             switch (id) {
 
                 case R.id.popular:
+                    setContentView(R.layout.activity_main);
                     new DownloadListTask().execute("popular");
                     return true;
 
                 case R.id.top_rated:
+                    setContentView(R.layout.activity_main);
                     new DownloadListTask().execute("top_rated");
                     return true;
             }
-        }
+        } else setContentView(R.layout.error);
 
 
         return super.onOptionsItemSelected(item);
@@ -102,7 +104,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             try {
-                String responseString = response.body().string();
+                String responseString = null;
+                if (response != null) {
+                    responseString = response.body().string();
+                }
                 movies = ParseJson.parseJson(responseString);
             } catch (IOException e) {
                 e.printStackTrace();

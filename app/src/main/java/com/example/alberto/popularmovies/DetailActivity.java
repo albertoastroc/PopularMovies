@@ -29,7 +29,7 @@ public class DetailActivity extends AppCompatActivity {
         Movie movie = intent.getParcelableExtra("movie");
 
         String poster = movie.getmMoviePoster();
-        Picasso.get().load(poster).resize(275, 350).into(posterIv);
+        Picasso.get().load(poster).placeholder(R.drawable.question_mark).resize(275, 350).into(posterIv);
         String originalTitle = movie.getmMovieTitle();
         String overview = movie.getmMovieOverview();
         double userRating = movie.getmUserRating();
