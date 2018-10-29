@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewMovieAdapter.ViewHolder> {
 
-    private ArrayList<Movie> movieArrayList;
-    private LayoutInflater layoutInflater;
-    private ItemClickListener listener;
+    private final ArrayList<Movie> movieArrayList;
+    private final LayoutInflater layoutInflater;
+    private final ItemClickListener listener;
 
     public RecyclerViewMovieAdapter(Context context, ArrayList<Movie> movieArrayList, ItemClickListener listener) {
         this.listener = listener;
@@ -49,18 +49,23 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView recyclerPosterIv;
+        final ImageView recyclerPosterIv;
 
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             recyclerPosterIv = itemView.findViewById(R.id.recycler_poster_iv);
         }
 
-        public void bind(final Movie movie, final ItemClickListener itemClickListener) {
+        void bind(final Movie movie, final ItemClickListener itemClickListener) {
 
-            String posterUrl = movie.getmMoviePoster();
-            Picasso.get().load(posterUrl).fit().into(recyclerPosterIv);
+            String posterUrl = movie.getMoviePoster();
+
+            Picasso.get().load(posterUrl)
+                    .placeholder(R.drawable.ic_cloud_off_black_24dp)
+                    .fit()
+                    .into(recyclerPosterIv);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

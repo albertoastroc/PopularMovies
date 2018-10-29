@@ -8,11 +8,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.text.DecimalFormat;
-
 public class DetailActivity extends AppCompatActivity {
-
-    //TODO remove user rating label
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +22,26 @@ public class DetailActivity extends AppCompatActivity {
         TextView releaseDateTv = findViewById(R.id.release_date_tv);
 
         Intent intent = getIntent();
-        Movie movie = intent.getParcelableExtra("movie");
+        Movie movie = intent.getParcelableExtra(MainActivity.MOVIE_EXTRA);
+        String poster = movie.getMoviePoster();
 
-        String poster = movie.getmMoviePoster();
-        Picasso.get().load(poster).placeholder(R.drawable.question_mark).resize(275, 350).into(posterIv);
-        String originalTitle = movie.getmMovieTitle();
-        String overview = movie.getmMovieOverview();
-        double userRating = movie.getmUserRating();
-        //TODO out of 10
-        String releaseDate = movie.getmReleaseDate();
-        String substring = releaseDate.substring(0,4);
-        //TODO list only year
+        int targetHeight = 350;
+        int targetWidth = 275;
+        Picasso.get()
+                .load(poster)
+                .placeholder(R.drawable.ic_cloud_off_black_24dp)
+                .resize(targetWidth, targetHeight)
+                .into(posterIv);
+
+        String originalTitle = movie.getMovieTitle();
+        String overview = movie.getMovieOverview();
+        double userRating = movie.getUserRating();
+        String releaseDate = movie.getReleaseDate();
+        String substring = releaseDate.substring(0, 4);
 
         originalTitleTv.setText(originalTitle);
         overviewTv.setText(overview);
-        userRatingTv.setText(String.valueOf(userRating) + "/10");
+        userRatingTv.setText(String.format("%s/10", String.valueOf(userRating)));
         releaseDateTv.setText(substring);
 
 

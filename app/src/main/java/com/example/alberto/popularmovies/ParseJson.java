@@ -1,22 +1,20 @@
 package com.example.alberto.popularmovies;
 
+import android.net.Uri;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
-public class ParseJson {
+class ParseJson {
 
 
     public static ArrayList<Movie> parseJson(String json) {
 
         JSONObject rootObject;
         ArrayList<Movie> resultsList = new ArrayList<>();
-
-        final String templateRequest = "https://image.tmdb.org/t/p/w185";
-        //TODO: use URL
 
         try {
 
@@ -27,13 +25,24 @@ public class ParseJson {
 
                 for (int i = 0; i < resultsArray.length(); i++) {
                     JSONObject jsonObject = resultsArray.getJSONObject(i);
+
                     String originalTitle = jsonObject.getString("original_title");
                     String posterPath = jsonObject.getString("poster_path");
                     String overview = jsonObject.getString("overview");
                     double userRating = jsonObject.getDouble("vote_average");
                     String releaseDate = jsonObject.getString("release_date");
-                    String moviePoster = templateRequest + posterPath;
-                    Movie movie = new Movie(originalTitle, moviePoster, overview, userRating, releaseDate);
+
+                    Uri.Builder builder = new Uri.Builder();
+                    builder.scheme("https")
+                            .authority("image.tmdb.org")
+                            .appendPath("t")
+                            .appendPath("p")
+                            .appendPath("w185")
+                            .appendEncodedPath(posterPath);
+
+                    String posterUrl = builder.build().toString();
+
+                    Movie movie = new Movie(originalTitle, posterUrl, overview, userRating, releaseDate);
                     resultsList.add(movie);
                 }
 

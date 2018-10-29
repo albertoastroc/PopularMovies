@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Popular Movies</string>
+    <string name="popular_option">popular</string>
+    <string name="top_rated_option">top_rated</string>
+    <string name="user_rating">User Rating:</string>
+    <string name="overview">Overview:</string>
+    <string name="unable_to_load_list">Unable to load list.</string>
+    <string name="movie_poster">movie poster</string>
+    <string name="popular_menu">Popular</string>
+    <string name="top_rated_menu">Top Rated</string>
+    <string name="poster_thumbnail">poster thumbnail</string>
+    <string name="error_image">error image</string>
 </resources>

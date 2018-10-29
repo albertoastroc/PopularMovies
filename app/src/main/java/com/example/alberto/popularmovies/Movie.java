@@ -3,7 +3,7 @@ package com.example.alberto.popularmovies;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Movie implements Parcelable{
+public class Movie implements Parcelable {
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
@@ -16,46 +16,46 @@ public class Movie implements Parcelable{
             return new Movie[size];
         }
     };
-    private String mMoviePoster;
-    private String mMovieTitle;
-    private String mMovieOverview;
-    private String mReleaseDate;
-    private double mUserRating;
+    private final String moviePoster;
+    private final String movieTitle;
+    private final String movieOverview;
+    private final String releaseDate;
+    private final double userRating;
 
     Movie(String originalTitle, String moviePoster, String overview, double userRating, String releaseDate) {
-        this.mMoviePoster = moviePoster;
-        this.mMovieTitle = originalTitle;
-        this.mMovieOverview = overview;
-        this.mReleaseDate = releaseDate;
-        this.mUserRating = userRating;
+        this.moviePoster = moviePoster;
+        this.movieTitle = originalTitle;
+        this.movieOverview = overview;
+        this.releaseDate = releaseDate;
+        this.userRating = userRating;
     }
 
     private Movie(Parcel in) {
-        mMoviePoster = in.readString();
-        mMovieTitle = in.readString();
-        mMovieOverview = in.readString();
-        mReleaseDate = in.readString();
-        mUserRating = in.readDouble();
+        moviePoster = in.readString();
+        movieTitle = in.readString();
+        movieOverview = in.readString();
+        releaseDate = in.readString();
+        userRating = in.readDouble();
     }
 
-    public String getmMoviePoster() {
-        return mMoviePoster;
+    public String getMoviePoster() {
+        return moviePoster;
     }
 
-    public String getmMovieTitle() {
-        return mMovieTitle;
+    public String getMovieTitle() {
+        return movieTitle;
     }
 
-    public String getmMovieOverview() {
-        return mMovieOverview;
+    public String getMovieOverview() {
+        return movieOverview;
     }
 
-    public String getmReleaseDate() {
-        return mReleaseDate;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public double getmUserRating() {
-        return mUserRating;
+    public double getUserRating() {
+        return userRating;
     }
 
     @Override
@@ -65,10 +65,10 @@ public class Movie implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mMoviePoster);
-        dest.writeString(mMovieTitle);
-        dest.writeString(mMovieOverview);
-        dest.writeString(mReleaseDate);
-        dest.writeDouble(mUserRating);
+        dest.writeString(moviePoster);
+        dest.writeString(movieTitle);
+        dest.writeString(movieOverview);
+        dest.writeString(releaseDate);
+        dest.writeDouble(userRating);
     }
 }
