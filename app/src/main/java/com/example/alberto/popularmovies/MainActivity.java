@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         protected ArrayList<Movie> doInBackground(String... preference) {
 
             OkHttpClient okHttpClient = new OkHttpClient();
+
+            //TODO: Add API key
             final String API_KEY = "";
 
             Uri.Builder builder = new Uri.Builder();
