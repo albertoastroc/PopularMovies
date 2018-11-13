@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             OkHttpClient okHttpClient = new OkHttpClient();
 
             //TODO: Add API key
-            final String API_KEY = "";
+            final String API_KEY = "aa7c95df42b9e34788ea40bcfb3d83c9";
 
             Uri.Builder builder = new Uri.Builder();
             builder.scheme("https")
