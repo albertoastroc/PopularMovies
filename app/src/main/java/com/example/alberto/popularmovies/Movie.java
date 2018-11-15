@@ -5,22 +5,11 @@ import android.os.Parcelable;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity (tableName = "movie_table")
 public class Movie implements Parcelable {
-
-    @androidx.annotation.NonNull
-    @ColumnInfo
-    private Movie movie;
-
-    public Movie getMovie() {
-        return this.movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
@@ -34,59 +23,87 @@ public class Movie implements Parcelable {
         }
     };
 
+
+
     @PrimaryKey
     private int id;
     @ColumnInfo (name = "movie_poster")
-    private final String moviePoster;
+    private String moviePoster;
     @ColumnInfo (name = "movie_title")
-    private final String movieTitle;
+    private String movieTitle;
     @ColumnInfo (name = "movie_overview")
-    private final String movieOverview;
+    private String movieOverview;
     @ColumnInfo (name = "release_date")
-    private final String releaseDate;
+    private String releaseDate;
     @ColumnInfo (name = "user_rating")
-    private final double userRating;
+    private double userRating;
 
-    Movie(String originalTitle, String moviePoster, String overview, double userRating, String releaseDate, int id) {
+    public Movie(int id, String moviePoster, String movieTitle, String movieOverview, String releaseDate, double userRating) {
+        this.id = id;
         this.moviePoster = moviePoster;
-        this.movieTitle = originalTitle;
-        this.movieOverview = overview;
+        this.movieTitle = movieTitle;
+        this.movieOverview = movieOverview;
         this.releaseDate = releaseDate;
         this.userRating = userRating;
-        this.id = id;
     }
 
+    @Ignore
     private Movie(Parcel in) {
+        id = in.readInt();
         moviePoster = in.readString();
         movieTitle = in.readString();
         movieOverview = in.readString();
         releaseDate = in.readString();
         userRating = in.readDouble();
-        id = in.readInt();
+
     }
 
-    public void setMoviePoster(String moviePoster){
-        this.moviePoster = moviePoster;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMoviePoster() {
         return moviePoster;
     }
 
+    public void setMoviePoster(String moviePoster) {
+        this.moviePoster = moviePoster;
+    }
+
     public String getMovieTitle() {
         return movieTitle;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     public String getMovieOverview() {
         return movieOverview;
     }
 
+    public void setMovieOverview(String movieOverview) {
+        this.movieOverview = movieOverview;
+    }
+
     public String getReleaseDate() {
         return releaseDate;
     }
 
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     public double getUserRating() {
         return userRating;
+    }
+
+    public void setUserRating(double userRating) {
+        this.userRating = userRating;
     }
 
     @Override
@@ -96,11 +113,12 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(moviePoster);
         dest.writeString(movieTitle);
         dest.writeString(movieOverview);
         dest.writeString(releaseDate);
         dest.writeDouble(userRating);
-        dest.writeInt(id);
+
     }
 }
