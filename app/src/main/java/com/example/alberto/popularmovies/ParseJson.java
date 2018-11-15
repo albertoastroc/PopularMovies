@@ -31,18 +31,19 @@ class ParseJson {
                     String overview = jsonObject.getString("overview");
                     double userRating = jsonObject.getDouble("vote_average");
                     String releaseDate = jsonObject.getString("release_date");
+                    int id = jsonObject.getInt("id");
 
                     Uri.Builder builder = new Uri.Builder();
                     builder.scheme("https")
                             .authority("image.tmdb.org")
                             .appendPath("t")
                             .appendPath("p")
-                            .appendPath("w185")
+                            .appendPath("w342")
                             .appendEncodedPath(posterPath);
 
                     String posterUrl = builder.build().toString();
 
-                    Movie movie = new Movie(originalTitle, posterUrl, overview, userRating, releaseDate);
+                    Movie movie = new Movie(originalTitle, posterUrl, overview, userRating, releaseDate, id);
                     resultsList.add(movie);
                 }
 

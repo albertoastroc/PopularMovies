@@ -9,6 +9,6 @@
         android:id="@+id/recycler_poster_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="250dp"
-        android:minWidth="250dp" />
+        android:minHeight="280dp"
+        android:minWidth="200dp" />
 </FrameLayout>

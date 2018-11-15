@@ -25,8 +25,8 @@ public class DetailActivity extends AppCompatActivity {
         Movie movie = intent.getParcelableExtra(MainActivity.MOVIE_EXTRA);
         String poster = movie.getMoviePoster();
 
-        int targetHeight = 350;
-        int targetWidth = 275;
+        int targetHeight = 360;
+        int targetWidth = 240;
         Picasso.get()
                 .load(poster)
                 .placeholder(R.drawable.ic_cloud_off_black_24dp)
