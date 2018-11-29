@@ -1,14 +1,13 @@
 package com.example.alberto.popularmovies;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
-
-@Entity (tableName = "movie_table")
+@Entity(tableName = "movie_table")
 public class Movie implements Parcelable {
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -23,11 +22,9 @@ public class Movie implements Parcelable {
         }
     };
 
-
-
     @PrimaryKey
     private int id;
-    @ColumnInfo (name = "movie_poster")
+    @ColumnInfo(name = "movie_poster")
     private String moviePoster;
     @ColumnInfo (name = "movie_title")
     private String movieTitle;

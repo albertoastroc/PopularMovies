@@ -1,32 +1,29 @@
 package com.example.alberto.popularmovies;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import androidx.room.Dao;
-import androidx.room.Delete;
-import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
-import androidx.room.Query;
-import androidx.room.Update;
 
 @Dao
 public interface MovieDao {
 
 
-    @Query("SELECT * FROM movie_table ORDER by movie asc")
+    @Query("SELECT * FROM movie_table ORDER BY id")
     LiveData<List<Movie>> getFavoriteMovies();
 
-    // on conflic strategy?
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Movie movie);
 
     @Delete
     void delete(Movie movie);
 
-
-
-
+    @Query("SELECT * FROM movie_table WHERE id = :id")
+    Movie loadById(int id);
 
 }

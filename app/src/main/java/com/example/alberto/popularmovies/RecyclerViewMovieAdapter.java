@@ -62,7 +62,6 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
             String posterUrl = movie.getMoviePoster();
 
             Picasso.get().load(posterUrl)
-                    .placeholder(R.drawable.ic_cloud_off_black_24dp)
                     .fit()
                     .into(recyclerPosterIv);
 

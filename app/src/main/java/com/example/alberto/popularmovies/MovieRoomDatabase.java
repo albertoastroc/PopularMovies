@@ -1,11 +1,10 @@
 package com.example.alberto.popularmovies;
 
+import android.arch.persistence.room.Database;
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.util.Log;
-
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
 
 
 
@@ -20,6 +19,7 @@ public abstract class MovieRoomDatabase extends RoomDatabase {
     public static MovieRoomDatabase getDatabase(Context context){
         if (sInstance == null){
             synchronized (LOCK){
+                Log.d(LOG_TAG, "ceating db instance");
                     sInstance = Room.databaseBuilder(context.getApplicationContext(),
                             MovieRoomDatabase.class,
                             MovieRoomDatabase.DATABASE_NAME)

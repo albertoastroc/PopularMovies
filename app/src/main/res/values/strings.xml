@@ -10,4 +10,5 @@
     <string name="top_rated_menu">Top Rated</string>
     <string name="poster_thumbnail">poster thumbnail</string>
     <string name="error_image">error image</string>
+    <string name="favorites">favorites</string>
 </resources>

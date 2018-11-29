@@ -43,7 +43,7 @@ class ParseJson {
 
                     String posterUrl = builder.build().toString();
 
-                    Movie movie = new Movie(originalTitle, posterUrl, overview, userRating, releaseDate, id);
+                    Movie movie = new Movie(id, posterUrl, originalTitle, overview, releaseDate, userRating);
                     resultsList.add(movie);
                 }
 
