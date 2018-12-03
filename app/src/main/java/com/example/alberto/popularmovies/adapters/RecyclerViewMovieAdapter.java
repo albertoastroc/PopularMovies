@@ -40,7 +40,10 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
 
     @Override
     public int getItemCount() {
-        return movieArrayList.size();
+        if(movieArrayList!= null){
+            return movieArrayList.size();
+        } else return 0;
+
     }
 
     public interface ItemClickListener {
