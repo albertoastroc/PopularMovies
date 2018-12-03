@@ -1,14 +1,18 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Popular Movies</string>
     <string name="popular_option">popular</string>
     <string name="top_rated_option">top_rated</string>
     <string name="user_rating">User Rating:</string>
-    <string name="overview">Overview:</string>
-    <string name="unable_to_load_list">Unable to load list.</string>
     <string name="movie_poster">movie poster</string>
-    <string name="popular_menu">Popular</string>
-    <string name="top_rated_menu">Top Rated</string>
+    <string name="popular_title">Popular</string>
+    <string name="top_rated_title">Top Rated</string>
     <string name="poster_thumbnail">poster thumbnail</string>
-    <string name="error_image">error image</string>
-    <string name="favorites">favorites</string>
+    <string name="favorites">Favorites</string>
+    <string name="play_trailer_icon">play_trailer_icon</string>
+    <string name="my_favorites_title">My Favorites</string>
+    <string name="no_internet">No internet connection, unable to update list</string>
+    <string name="volley_error">Volley Error</string>
+    <string name="populating_viewmodel">Populating using ViewModel</string>
+    <string name="videos">videos</string>
+    <string name="reviews">reviews</string>
 </resources>

@@ -1,3 +1,3 @@
 PopularMovies project
 
-Add Api key within MainActivity.java
+Add Api key within package helpers/UrlBuilder.java

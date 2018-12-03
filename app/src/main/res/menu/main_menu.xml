@@ -4,10 +4,10 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/popular"
-            android:title="@string/popular_menu" />
+            android:title="@string/popular_title" />
         <item
             android:id="@+id/top_rated"
-            android:title="@string/top_rated_menu" />
+            android:title="@string/top_rated_title" />
         <item
             android:id="@+id/favorites"
             android:title="@string/favorites" />

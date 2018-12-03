@@ -26,13 +26,13 @@ public class Movie implements Parcelable {
     private int id;
     @ColumnInfo(name = "movie_poster")
     private String moviePoster;
-    @ColumnInfo (name = "movie_title")
+    @ColumnInfo(name = "movie_title")
     private String movieTitle;
-    @ColumnInfo (name = "movie_overview")
+    @ColumnInfo(name = "movie_overview")
     private String movieOverview;
-    @ColumnInfo (name = "release_date")
+    @ColumnInfo(name = "release_date")
     private String releaseDate;
-    @ColumnInfo (name = "user_rating")
+    @ColumnInfo(name = "user_rating")
     private double userRating;
 
     public Movie(int id, String moviePoster, String movieTitle, String movieOverview, String releaseDate, double userRating) {
@@ -59,48 +59,24 @@ public class Movie implements Parcelable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getMoviePoster() {
         return moviePoster;
-    }
-
-    public void setMoviePoster(String moviePoster) {
-        this.moviePoster = moviePoster;
     }
 
     public String getMovieTitle() {
         return movieTitle;
     }
 
-    public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
-    }
-
     public String getMovieOverview() {
         return movieOverview;
-    }
-
-    public void setMovieOverview(String movieOverview) {
-        this.movieOverview = movieOverview;
     }
 
     public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     public double getUserRating() {
         return userRating;
-    }
-
-    public void setUserRating(double userRating) {
-        this.userRating = userRating;
     }
 
     @Override

@@ -6,7 +6,7 @@
 
     <ImageView
         android:contentDescription="@string/movie_poster"
-        android:id="@+id/recycler_poster_iv"
+        android:id="@+id/iv_main_movie_adapter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minHeight="250dp"

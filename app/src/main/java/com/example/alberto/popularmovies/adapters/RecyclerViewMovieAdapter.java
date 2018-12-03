@@ -1,4 +1,4 @@
-package com.example.alberto.popularmovies;
+package com.example.alberto.popularmovies.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.alberto.popularmovies.Movie;
+import com.example.alberto.popularmovies.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -47,14 +49,14 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         final ImageView recyclerPosterIv;
 
 
         ViewHolder(View itemView) {
             super(itemView);
-            recyclerPosterIv = itemView.findViewById(R.id.recycler_poster_iv);
+            recyclerPosterIv = itemView.findViewById(R.id.iv_main_movie_adapter);
         }
 
         void bind(final Movie movie, final ItemClickListener itemClickListener) {
